@@ -11,6 +11,6 @@ function App() {
         <img src="images/goat_small.jpg"/>
       </div>
     );
-}
+};
 
 export default App;
