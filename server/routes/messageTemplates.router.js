@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const guests = require('../modules/guests.data.js');
+const messageTemplates = require('../modules/messageTemplates.data.js');
 
 // GET Route
 router.get('/', (req, res) => {
-  res.send(guests);
+  res.send(messageTemplates);
 }); // END GET Route
 
 module.exports = router;

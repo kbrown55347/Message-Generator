@@ -41,8 +41,8 @@ const guests = [
   },
   {
     id: 5,
-    firstName: Latoya,
-    lastName: Herrera,
+    firstName: "Latoya",
+    lastName: "Herrera",
     reservation: {
       roomNumber: 194,
       startTimestamp: 1486605110,
