@@ -6,20 +6,21 @@ import { Button, NativeSelect, Grid } from '@mui/material';
 
 
 function App() {
-  // Setup local state
-  const [companies, setCompanies] = useState([]);
-  const [guests, setGuests] = useState([]);
+
   // variable with array of objects for time of day options
   let timeOfDayOptions = [{ id: 1, time: 'morning' }, { id: 2, time: 'afternoon' }, { id: 3, time: 'evening' }];
 
-  // Local state to populate message template
+  // Setup local state for all companies and guests information
+  const [companies, setCompanies] = useState([]);
+  const [guests, setGuests] = useState([]);
+  // Local state to capture user selected values from DOM
   const [selectedTimeOfDay, setSelectedTimeOfDay] = useState(0);
   const [selectedGuestId, setSelectedGuestId] = useState(0);
   const [selectedCompanyId, setSelectedCompanyId] = useState(0);
-
+  // Local state to populate message template
   const [timeOfDay, setTimeOfDay] = useState('(Time of Day)');
-  const [companyName, setCompanyName] = useState('(Company Name)');
   const [guestFirstName, setGuestFirstName] = useState('(Guest First Name)');
+  const [companyName, setCompanyName] = useState('(Company Name)');
   const [guestRoomNumber, setGuestRoomNumber] = useState('(Guest Room Number)');
 
   // declare message template
@@ -40,12 +41,12 @@ function App() {
       method: 'GET',
       url: '/companies'
     }).then((response) => {
-      // Set state
+      // Set local state
       setCompanies(response.data);
     }).catch((error) => {
       console.log('GET /companies failed', error);
     });
-  };
+  }; // end fetchCompanies
 
   // Create function to fetch guests
   const fetchGuests = () => {
@@ -54,12 +55,12 @@ function App() {
       method: 'GET',
       url: '/guests'
     }).then((response) => {
-      // Set state
+      // Set local state
       setGuests(response.data);
     }).catch((error) => {
       console.log('GET /guests failed', error);
     });
-  };
+  }; // end fetchGuests
 
   // function for on click of GENERATE MESSAGE button
   const onGenerateMessageClick = () => {
@@ -67,22 +68,19 @@ function App() {
     for (let companyItem of companies) {
       // using double equals bc selectedCompanyId is a string and companyItem.id a number
       if (companyItem.id == selectedCompanyId) {
-        // reassign value of companyName
         setCompanyName(companyItem.company);
       };
     };
     // loop through guests array to get selected guests first name and room number
     for (let guest of guests) {
       if (guest.id == selectedGuestId) {
-        // reassign declared values
         setGuestFirstName(guest.firstName);
         setGuestRoomNumber(guest.reservation.roomNumber);
       };
     };
-
+    // set local state for time of day selected by user
     setTimeOfDay(selectedTimeOfDay);
-
-  };
+  }; // end onGenerateMessageClick
 
   return (
     <div className="App">
@@ -91,15 +89,14 @@ function App() {
       </header>
       <p className="directions">Get started by choosing an option below!</p>
 
-      <h3 className="title">1. Use Existing Message Template</h3>
-
+      {/* existing message template option */}
+      <h3 className="option-title">1. Use Existing Message Template</h3>
       <Grid
         container
         direction="row"
         justifyContent="space-evenly"
         alignItems="center"
       >
-
         {/* dropdown menu to select time of day */}
         <NativeSelect
           value={selectedTimeOfDay}
@@ -115,7 +112,6 @@ function App() {
             );
           })}
         </NativeSelect>
-
         {/* dropdown menu to select guest */}
         <NativeSelect
           value={selectedGuestId}
@@ -131,7 +127,6 @@ function App() {
             );
           })}
         </NativeSelect>
-
         {/* dropdown menu to select company */}
         <NativeSelect
           value={selectedCompanyId}
@@ -147,7 +142,6 @@ function App() {
             );
           })}
         </NativeSelect>
-
         {/* generate message button*/}
         <Button
           variant="contained"
@@ -156,7 +150,6 @@ function App() {
         >
           GENERATE MESSAGE
         </Button>
-
       </Grid>
 
       <div className="message">
@@ -164,7 +157,8 @@ function App() {
         <p className="message">{messageTemplate}</p>
       </div>
 
-      <h3 className="title">2. Create New Message</h3>
+      {/* create new message option */}
+      <h3 className="option-title">2. Create New Message</h3>
       <Button
         variant="contained"
         style={{ backgroundColor: '#314A56', color: 'white' }}>
