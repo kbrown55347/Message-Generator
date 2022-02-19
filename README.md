@@ -1,9 +1,18 @@
 # Project Name
 
-[Project Instructions](./INSTRUCTIONS.md), this line may be removed once you have updated the README.md
 
 ## Description
 
-Your project description goes here. What problem did you solve? How did you solve it?
 
-Additional README details can be found [here](https://github.com/PrimeAcademy/readme-template/blob/master/README.md).
+## Prerequisites
+
+- [Node.js](https://nodejs.org/en/)
+
+## Installation
+- Running the server code requires `nodemon`. If you don't already have `nodemon`, install it globally with `npm install nodemon --global`.
+- `npm install`
+- `npm run server` to start server
+- `npm run client`
+
+
+
