@@ -4,6 +4,10 @@
 - [x] setup basic template, companies and guests GET routes
 
 App.jsx
-- [ ] basic HTML setup
-- [ ] buttons to choose existing template or new template
-- [ ] drop down menus to populate with company name, guest name, room number, time of day
+- [x] basic HTML setup
+- [x] buttons to choose existing template or new template
+
+on click of choose existing template
+- [ ] setup onclick function
+- [ ] setup local state to capture options chosen from drop down menus
+- [ ] show drop down menus to populate with company name, guest name, room number, time of day on DOM
