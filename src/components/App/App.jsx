@@ -9,13 +9,23 @@ function App() {
   // Setup local state
   const [companies, setCompanies] = useState([]);
   const [guests, setGuests] = useState([]);
-  // variable with array of objects for time of day
-  let timeOfDay = [{id: 1, time: 'morning'}, {id: 2, time: 'afternoon'}, {id: 3, time: 'evening'}];
+  // variable with array of objects for time of day options
+  let timeOfDayOptions = [{ id: 1, time: 'morning' }, { id: 2, time: 'afternoon' }, { id: 3, time: 'evening' }];
 
   // Local state to populate message template
   const [selectedTimeOfDay, setSelectedTimeOfDay] = useState(0);
   const [selectedGuestId, setSelectedGuestId] = useState(0);
   const [selectedCompanyId, setSelectedCompanyId] = useState(0);
+
+  const [timeOfDay, setTimeOfDay] = useState('(Time of Day)');
+  const [companyName, setCompanyName] = useState('(Company Name)');
+  const [guestFirstName, setGuestFirstName] = useState('(Guest First Name)');
+  const [guestRoomNumber, setGuestRoomNumber] = useState('(Guest Room Number)');
+
+  // declare message template
+  let messageTemplate = `Good ${timeOfDay}, ${guestFirstName}! Welcome to ${companyName}.
+  Room ${guestRoomNumber} is now ready for you. Please let us know if
+  you need anything and enjoy your stay.`;
 
   useEffect(() => {
     // Call functions to fetch data on page load
@@ -51,22 +61,37 @@ function App() {
     });
   };
 
-  console.log('selected time of day', selectedTimeOfDay);
-  console.log('selected guest id', selectedGuestId);
-  console.log('selected company id', selectedCompanyId);
+  // function for on click of GENERATE MESSAGE button
+  const onGenerateMessageClick = () => {
+    // loop through companies array to get company name selected by user
+    for (let companyItem of companies) {
+      // using double equals bc selectedCompanyId is a string and companyItem.id a number
+      if (companyItem.id == selectedCompanyId) {
+        // reassign value of companyName
+        setCompanyName(companyItem.company);
+      };
+    };
+    // loop through guests array to get selected guests first name and room number
+    for (let guest of guests) {
+      if (guest.id == selectedGuestId) {
+        // reassign declared values
+        setGuestFirstName(guest.firstName);
+        setGuestRoomNumber(guest.reservation.roomNumber);
+      };
+    };
+
+    setTimeOfDay(selectedTimeOfDay);
+
+  };
 
   return (
     <div className="App">
       <header className="App-header">
         <h1 className="App-title">Message Generator</h1>
       </header>
-      {/* <p>Get started by choosing an option below:</p> */}
+      <p className="directions">Get started by choosing an option below!</p>
 
-      <h3>Use Existing Template</h3>
-      {/* display existing template on DOM */}
-      {/* <p>Good morning, Tyler! Welcome to Hotel California.
-        Room 305 is now ready for you. Please let us know if
-        you need anything and enjoy your stay!</p> */}
+      <h3 className="title">1. Use Existing Message Template</h3>
 
       <Grid
         container
@@ -82,7 +107,7 @@ function App() {
           <option disabled value='0'>
             Select Time of Day
           </option>
-          {timeOfDay.map((timeItem) => {
+          {timeOfDayOptions.map((timeItem) => {
             return (
               <option key={timeItem.id} value={timeItem.time}>
                 {timeItem.time}
@@ -122,12 +147,27 @@ function App() {
             );
           })}
         </NativeSelect>
+
+        {/* generate message button*/}
+        <Button
+          variant="contained"
+          style={{ backgroundColor: '#314A56', color: 'white' }}
+          onClick={onGenerateMessageClick}
+        >
+          GENERATE MESSAGE
+        </Button>
+
       </Grid>
 
-      <h3>Create New Message</h3>
+      <div className="message">
+        <p className="directions">Message Output:</p>
+        <p className="message">{messageTemplate}</p>
+      </div>
+
+      <h3 className="title">2. Create New Message</h3>
       <Button
         variant="contained"
-        style={{ backgroundColor: 'black', color: 'white' }}>
+        style={{ backgroundColor: '#314A56', color: 'white' }}>
         CREATE NEW MESSAGE
       </Button>
 

@@ -3,7 +3,7 @@
 }
 
 .App-header {
-  background-color: #222;
+  background-color: #314A56;
   padding: 1em;
   color: white;
   margin-bottom: 1em;
@@ -11,4 +11,17 @@
 
 .App-title {
   font-size: 1.5em;
+}
+
+.title {
+  margin-top: 3em;
+}
+
+.directions {
+  color: grey;
+  font-style: italic;
+}
+
+.message {
+  margin: 1.5em;
 }
