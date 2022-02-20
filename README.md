@@ -25,23 +25,23 @@ To generate a message for a guest using an existing template:
 
 ## Design Decisions
 
-I provided dropdown menus for the user to select from pre-populated data in order to eliminate potential error in the user choosing or inputting a guest's name, a company name or a guest's room number. I displayed the message output below the dropdown menus so the user could see the message template for the information they were being prompted to select.
+I provided dropdown menus for the user to select from pre-populated data in order to eliminate potential error in the user choosing or inputting a guest's name, a company name or a guest's room number. I displayed the message output below the dropdown menus so the user could see the message template for the information they are being prompted to select. When selecting the guest's name I included the first and last name in the dropdown menu even though just the first name is used for the message. I did this because it could occur that more than one guest could have the same first name and I wanted to ensure the correct room number is presented in the message.
 
-In the App.jsx file, I stored the id's of the selected values by the user so more than just the selected guest's first name, room number and/or the company's name is stored. That way those pieces of state could be accessed and used in the future for other message templates that could ask for additional or different information.
+In the App.jsx file, I stored the id of the object associated with the value selected in the dropdown menu. This way more than just the selected guest's name and company's name are stored in local state. Those pieces of state could then be accessed to get other information (including guest room number) and could be used for future message templates that could include additional information (such as company location). With how I setup the routes on the server side, it could make for a smoother transition to access information from a database if that were to be setup to store company and guest information in the future.
 
 ## Languages Used
 
-I used a combination of HTML, CSS, MUI, React, Express and Node for this project. I used Express and Node to be able to store and access both company and guest data server side. I used MUI in combination with CSS to bring the project past the vanilla HTML layout and because I enjoy the style of MUI. I also used all of these languages, including React, because they are the ones I am the most comfortable with at this time and that I determined would allow me to best accomplish the project.
+I used a combination of HTML, CSS, MUI, React, Express and Node for this project. I used Express and Node to be able to access both company and guest data server side. I used MUI in combination with CSS to bring the project past the vanilla HTML layout and because I personally enjoy the style of MUI. I also used all of these languages, including React, because they are the ones I am the most familiar with at this time. Because of this, I determined I would be the most efficient with my time in using these languages for this project.
 
 ## Process for Verifying Correctness of Program
 
-To verify the program was functioning how I intended it too, I tested my functions along the way by console logging variables and data. I did this to ensure I was getting the result I thought I was supposed to get. I also used Postman in the beginning to test that my GET routes were working correctly to retrieve all the data requested. Lastly, I tested the program as a potential user in the web browser to make sure the data that was populating and that I was selecting matched up with the data that was provided in the JSON files.
+To verify the program was functioning how I intended, I tested my functions along the way by console logging variables and data. I did this to ensure I was getting the result I expected. I also used Postman in the beginning to test that my GET routes were working correctly to retrieve all the requested data. Lastly, I tested the program in the web browser, as a user, to make sure the data I selected was correctly populating in the message on the DOM and matching the data that was provided in the JSON files.
 
-## What I Would Do With More Time
+## What I Didn't Get to and Would Do With More Time
 
-- I would move the message template information to a JSON file in the server like I did for the companies and guests data
+- I would move the message template information to a JSON file in the server like I did for the companies and guests data and access it there
 - I would build out the functionality to allow a user to create and use their own message template
-- I would create a way to autopopulate the morning, afternoon or evening times of day based on the actual time of day instead of having the user select
+- I would create a way to autopopulate the morning, afternoon or evening times of day based on the actual time of day instead of having the user select it
 
 
 

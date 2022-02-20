@@ -18,10 +18,10 @@ function App() {
   const [selectedGuestId, setSelectedGuestId] = useState(0);
   const [selectedCompanyId, setSelectedCompanyId] = useState(0);
   // Local state to populate message template
-  const [timeOfDay, setTimeOfDay] = useState('(Time of Day)');
-  const [guestFirstName, setGuestFirstName] = useState('(Guest First Name)');
-  const [companyName, setCompanyName] = useState('(Company Name)');
-  const [guestRoomNumber, setGuestRoomNumber] = useState('(Guest Room Number)');
+  const [timeOfDay, setTimeOfDay] = useState('(time of day)');
+  const [guestFirstName, setGuestFirstName] = useState('(guest first name)');
+  const [companyName, setCompanyName] = useState('(company name)');
+  const [guestRoomNumber, setGuestRoomNumber] = useState('(guest room number)');
 
   // declare message template
   let messageTemplate = `Good ${timeOfDay}, ${guestFirstName}! Welcome to ${companyName}.
